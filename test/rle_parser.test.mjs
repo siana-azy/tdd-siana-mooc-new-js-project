@@ -6,4 +6,8 @@ describe("RLE parser", () => {
   test("single cell", () => {
     expect(parserRLE("o!")).to.deep.equal(new Set(["0,0"]));
   });
+
+  test("two cells", () => {
+    expect(parserRLE("2o!")).to.deep.equal(new Set(["0,0", "1,0"]));
+  });
 });
