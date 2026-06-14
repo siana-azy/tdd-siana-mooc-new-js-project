@@ -1,6 +1,8 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
 import { gameOfLife } from "../src/game_of_life.mjs";
+import { encoderRLE } from "../src/rle_encoder.mjs";
+import { parserRLE } from "../src/rle_parser.mjs";
 
 describe("game of life", () => {
   //Any live cell with fewer than two live neighbours dies, as if by underpopulation.
@@ -28,9 +30,22 @@ describe("game of life", () => {
     const next = gameOfLife(cells);
     expect(next.has("5,5")).to.equal(false);
   });
+  //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.[3][4]: 
+  test("dead cells with exactly 3 neihgbours becomes alive ", () => {
+    const cells  = new Set(["4,5","6,5","5,4"]);
+    const next = gameOfLife(cells);
+    expect(next.has("5,5")).to.equal(true);
+  });
+  //test with block
+  test("block ", () => {
+    const rle = "2o$2o!";
+    const cells = parserRLE(rle);
+    const next = gameOfLife(cells);
+    const result = encoderRLE(next);
+    expect(result).to.equal(rle);
+  });
 });
 
 
 
 
-//Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.[3][4]: 
