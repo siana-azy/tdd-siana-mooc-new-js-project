@@ -17,6 +17,11 @@ export function parserRLE(rle) {
 
         }
         count = ""
+    } else if(char === "$"){
+        const repeat = count === "" ? 1 : parseInt(count);
+        y += repeat;
+        x=0;
+        count = "";
     }
   }
   return cells;
