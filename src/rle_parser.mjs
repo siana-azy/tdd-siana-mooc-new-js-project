@@ -17,7 +17,12 @@ export function parserRLE(rle) {
 
         }
         count = ""
-    } else if(char === "$"){
+    } else if ( char === "b"){
+        const repeat = count === "" ? 1 : parseInt(count);
+        x += repeat;
+        count = "";
+
+    }else if(char === "$"){
         const repeat = count === "" ? 1 : parseInt(count);
         y += repeat;
         x=0;

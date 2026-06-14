@@ -13,4 +13,7 @@ describe("RLE parser", () => {
   test("two rows", () => {
     expect(parserRLE("o$o!")).to.deep.equal(new Set(["0,0", "0,1"]));
   });
+  test("dead cell shift position", () => {
+    expect(parserRLE("bo!")).to.deep.equal(new Set(["1,0"]));
+  });
 });
