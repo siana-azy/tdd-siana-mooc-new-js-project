@@ -15,5 +15,9 @@ describe("RLE encoder", () => {
         expect(encoderRLE(new Set(["0,0","1,0"]))).to.deep.equal("2o!");
         });
 
+    test("txo rows", () => {
+        expect(encoderRLE(new Set(["0,0","0,1"]))).to.deep.equal("o$o!");
+        });
+
 
 });

@@ -1,20 +1,33 @@
 export function encoderRLE(cells) {
     if(cells.size === 0)return "!";
 
-    const manyx = [];
+    const coord =[];
+
     for(const cell of cells){
         const [x, y] = cell.split(",").map(Number);
-        manyx.push(x);
+        coord.push([x, y]);
     } 
-    manyx.sort((a,b)=> a - b);
-
-    const count = manyx.length;
-
-    if(count > 1){
-        return count + "o!";
+    let max_y = 0;
+    for(const [x,y] of coord){
+        if( y>max_y) max_y = y;
     }
 
-    return "o!";
+    let result = "";
 
-  
+    for( let y = 0; y <= max_y; y++){
+        const allxInRow = [];
+        for( const[cell_x, cell_y] of coord){
+            if(cell_y === y) allxInRow.push(cell_x);
+        }
+
+        const count = allxInRow.length;
+
+        if(count > 1){
+            result += count + "o";
+        }else{
+            result += "o";
+        }
+        if (y < max_y) result += "$";
+    }
+    return result + "!";
 }
