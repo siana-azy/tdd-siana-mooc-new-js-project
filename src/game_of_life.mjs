@@ -1,3 +1,3 @@
-export function gameOfLife() {
-  //
+export function gameOfLife(cells) {
+  return new Set();
 }
