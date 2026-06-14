@@ -19,5 +19,9 @@ describe("RLE encoder", () => {
         expect(encoderRLE(new Set(["0,0","0,1"]))).to.deep.equal("o$o!");
         });
 
+    test("dead cell", () => {
+        expect(encoderRLE(new Set(["0,0","2,0"]))).to.deep.equal("obo!");
+        });
+
 
 });
