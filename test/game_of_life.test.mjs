@@ -16,6 +16,11 @@ describe("game of life", () => {
   });
 
   //Any live cell with two or three live neighbours lives on to the next generation.
+  test("cells with 2 or 3 neigbours live to the next gen ", () => {
+    const cells  = new Set(["5,5","6,5","5,6"]);
+    const next = gameOfLife(cells);
+    expect(next.has("5,5")).to.equal(true);
+  });
 });
 
 
